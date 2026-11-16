@@ -1,5 +1,5 @@
 {
-  "description": "mastermem: memory push on session start, prompt, tool batch and shell command, AskUserQuestion answers saved as verdicts, team rules on every tool call, lesson nudge and turn end rules on Stop, turn end rules of subagents on SubagentStop. Exec form (no shell) of the bundled mastermem-hook helper: it reads server and token from its environment (never from args), posts stdin to <server>/v1/hook/<event>, fails open (exit 0, no output) on any error.",
+  "description": "mastermem: memory push on session start, prompt, tool batch and shell command, team rules on every tool call, lesson nudge and turn end rules on Stop, turn end rules of subagents on SubagentStop. Exec form (no shell) of the bundled mastermem-hook helper: it reads server and token from its environment (never from args), posts stdin to <server>/v1/hook/<event>, fails open (exit 0, no output) on any error.",
   "hooks": {
     "SessionStart": [
       {
@@ -39,22 +39,6 @@
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/bin/mastermem-hook",
             "args": [
               "post-tool-batch",
-              "2"
-            ],
-            "timeout": 3
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "AskUserQuestion",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/bin/mastermem-hook",
-            "args": [
-              "post-tool-use",
               "2"
             ],
             "timeout": 3
