@@ -1,7 +1,7 @@
 ---
 description: "Answer quick blind choices from your own project (copy, layout, style, scope) so agents learn what you would pick"
 argument-hint: "[topic]"
-allowed-tools: ["Read", "Grep", "Glob", "Bash(git log:*)", "Bash(git ls-files:*)", "AskUserQuestion", "mcp__plugin_mastermem_mastermem__memory_search"]
+allowed-tools: ["Read", "Grep", "Glob", "Bash(git log:*)", "Bash(git ls-files:*)", "Bash(rg:*)", "AskUserQuestion", "mcp__plugin_mastermem_mastermem__memory_search"]
 ---
 
 Run a short interview: the user answers about 24 quick choices built from their own project, so their agents learn what they would pick. Arguments: `$ARGUMENTS` (optional topic, e.g. `copy`, `layout`, `code`; empty: mix the topics that fit this project).
@@ -12,9 +12,9 @@ Only AskUserQuestion answers are kept. When AskUserQuestion is not available (a 
 
 Talk plainly and briefly. No intro beyond one line: "About 6 rounds of 4 quick choices. Stop any time."
 
-## 1. Find real material (2 to 3 minutes, read only)
+## 1. Find real material (read only, before round 1)
 
-Look at this session's working directory: `git ls-files`, the README, recent commits (`git log --oneline -30`), and the files that hold what people see or what the team argues about:
+Before round 1: Read at least 4 files of this working directory that hold the material, and call `memory_search` once for the topic. Search with Grep, Glob and Read; no chained shell commands. Build only from this directory, not from a parent repo or memories about other projects. Look at: `git ls-files`, the README, recent commits (`git log --oneline -30`), and the files that hold what people see or what the team argues about:
 - copy: UI strings, messages files, landing or help texts, command outputs, error messages
 - layout: pages, components, GUI or menu definitions, screens
 - visual: colors, spacing, icons, theme files
@@ -22,18 +22,22 @@ Look at this session's working directory: `git ls-files`, the README, recent com
 - scope: README goals, open TODOs, half built features
 - ship: recent changes that look unfinished
 
-`memory_search` the topic once and skip anything a memory already settles. No project here: build the choices from the topic alone, still concrete.
+Skip anything a memory already settles. No project here: build the choices from the topic alone, still concrete.
 
 ## 2. Ask in rounds
 
 Each round is one AskUserQuestion call with up to 4 questions. Stop after about 6 rounds or when the user stops (declines, presses Esc, or says so). No commentary between rounds.
 
 Every question:
-- is one real trade-off from this project, never a fact (no "which server", "which path", "which version");
-- shows concrete variants, not descriptions of them: the actual alternative texts word for word, a small text mockup in each option's `preview` for layouts, a short code snippet in `preview` for code;
-- is blind: never mark any option "(Recommended)", never put your favourite first (vary the order), option descriptions say what the option is, never why it is better;
+- comes from a file you read in this session, and is one real trade-off, never a fact (no "which server", "which path", "which version");
+- has the current text or code word for word as one option (formatting tags like `<gray>` may go); every other option changes one thing from it. Never invent fields, keys, texts or functions the project does not have;
+- asks about behaviour the code already has only with the current behaviour as one option;
+- shows concrete variants, not descriptions of them: copy in its place in `preview` (the button, tooltip, chat line, item lore, empty state around it), a small text mockup for layouts, a short snippet for code;
+- is blind: never mark any option "(Recommended)", shuffle the options (not by length or size, the current one not always first), option descriptions say what the option is, never why it is better;
 - has 2 to 4 options, `multiSelect: false`;
 - has a `header` naming the topic in one word: Copy, Layout, Visual, Code, Scope or Ship.
+
+Write the questions in the user's chat language; labels and previews in the project's UI language (several locales: the default locale's messages file).
 
 Mix the topics within a round. Make the variants differ on one thing at a time (length, tone, density, order, naming, how much to build), so an answer says something clear.
 
