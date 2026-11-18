@@ -1,11 +1,11 @@
 ---
 name: import
-description: Import the user's existing agent notes (CLAUDE.md, AGENTS.md, GEMINI.md, .cursor/rules, copilot-instructions, .windsurfrules) into mastermem as separate memories. Use when the user says yes to the mastermem import offer, or asks to migrate, import or move their notes, rules or memories into mastermem.
+description: Import the user's existing agent notes (CLAUDE.md, AGENTS.md, GEMINI.md, .cursor/rules, copilot-instructions, .windsurfrules) into axs mem as separate memories. Use when the user says yes to the axs mem import offer, or asks to migrate, import or move their notes, rules or memories into mastermem.
 ---
 
-# Import agent notes into mastermem
+# Import agent notes into axs mem
 
-Turn the notes the user already keeps for agents into mastermem memories: one memory per lesson, the right type
+Turn the notes the user already keeps for agents into axs mem memories: one memory per lesson, the right type
 and scope, no secrets, nothing written before the user saw the list.
 
 ## 1. Find the notes
@@ -17,7 +17,7 @@ Look in the current repo and the home folder, read each file in full:
 
 Tell the user in one line what you found (file and line count). Nothing found: say so and stop.
 
-## 2. Check what mastermem has
+## 2. Check what axs mem has
 
 Call `memory_scopes` for the spaces and scope keys, and `memory_search` for the main topics of the notes, so
 you update existing memories instead of writing duplicates.

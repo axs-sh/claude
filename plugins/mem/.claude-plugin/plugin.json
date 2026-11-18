@@ -1,0 +1,18 @@
+{
+  "name": "mem",
+  "version": "0.18.0",
+  "description": "axs mem team memory: the right memory before the mistake, lessons saved when you correct the agent",
+  "author": {
+    "name": "Srino Systems eU",
+    "email": "info@srino.net"
+  },
+  "userConfig": {
+    "server": {
+      "type": "string",
+      "title": "Server URL",
+      "description": "Your axs mem server (no trailing slash); keep the default for mem.axs.sh",
+      "default": "https://mem.axs.sh",
+      "required": false
+    }
+  }
+}
