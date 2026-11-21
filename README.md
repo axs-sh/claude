@@ -37,13 +37,13 @@ Windows 10 and 11) that sends the hook events. The token is kept in the platform
 gets it through its environment, so other users on a shared machine cannot see it in the process list.
 
 Build the helper (maintainers): `./build.sh` (needs Go), then commit `plugins/brain/hooks/bin/`. Tests:
-`cd ../server && go test ./braincli` (add `MASTERMEM_PLUGIN_E2E=1` for the end to end run with `claude`).
+`cd ../server && go test ./braincli` (add `BRAIN_PLUGIN_E2E=1` for the end to end run with `claude`).
 
 ## The axs plugin (mem and build, not published yet)
 
 `plugins/axs` is the successor of `mem`: the same hooks and MCP server through the one `axs` binary (`axs brain ...`),
 plus build's route hook (`axs build route-hook`: heavy builds and tests go through axs build). Both are switchable:
-plugin options `mem` and `build`, or `axs install claude --no-mem|--no-build` (kept in the axs config), or
+plugin options `mem` and `build`, or `axs install claude --no-brain|--no-build` (kept in the axs config), or
 `AXS_NO_MEM=1` / `AXS_NO_BUILD=1` / `MB_LOCAL=1` in the environment. Its slash commands are `/axs:logout`,
 `/axs:switch`, `/axs:yolo` (the server takes `brain:yolo` and `axs:yolo`), `/axs:review`.
 

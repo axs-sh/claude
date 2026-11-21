@@ -1,6 +1,6 @@
 ---
 name: import
-description: Import the user's existing agent notes (CLAUDE.md, AGENTS.md, GEMINI.md, .cursor/rules, copilot-instructions, .windsurfrules) into axs brain as separate memories. Use when the user says yes to the axs brain import offer, or asks to migrate, import or move their notes, rules or memories into mastermem.
+description: Import the user's existing agent notes (CLAUDE.md, AGENTS.md, GEMINI.md, .cursor/rules, copilot-instructions, .windsurfrules) into axs brain as separate memories. Use when the user says yes to the axs brain import offer, or asks to migrate, import or move their notes, rules or memories into axs brain.
 ---
 
 # Import agent notes into axs brain

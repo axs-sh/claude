@@ -1,13 +1,13 @@
 #!/bin/sh
 # Installs axs brain's hooks and MCP into Codex or Cursor (macOS, Linux). The dashboard shows this line:
 #   curl -fsSL https://raw.githubusercontent.com/axs-sh/claude/<version tag>/install.sh | sh -s -- codex <server>
-# The device token is never an argument (shell history, ps): it comes from MASTERMEM_TOKEN, else a browser login
+# The device token is never an argument (shell history, ps): it comes from BRAIN_TOKEN, else a browser login
 # (the helper prints and opens a link, the person approves it in the dashboard). It downloads axs-brain for this
 # machine and runs `axs-brain install <client> --server <server>` with the token on stdin, or with --login; the
 # helper copies itself into the client's config dir, so the download is removed afterwards.
 set -eu
 usage() {
-  echo "usage: install.sh codex|cursor <server>   (the token: MASTERMEM_TOKEN, else a browser login)" >&2
+  echo "usage: install.sh codex|cursor <server>   (the token: BRAIN_TOKEN, else a browser login)" >&2
   exit 2
 }
 client=${1:-}
@@ -15,13 +15,13 @@ server=${2:-}
 case "$client" in codex | cursor) ;; *) usage ;; esac
 [ -n "$server" ] || usage
 if [ $# -gt 2 ]; then
-  echo "axs brain: do not pass the token as an argument; leave it out (browser login) or set MASTERMEM_TOKEN" >&2
+  echo "axs brain: do not pass the token as an argument; leave it out (browser login) or set BRAIN_TOKEN" >&2
   exit 2
 fi
 tmp=
 trap '[ -z "$tmp" ] || rm -rf "$tmp"' EXIT
 trap 'exit 130' INT TERM
-token=${MASTERMEM_TOKEN:-}
+token=${BRAIN_TOKEN:-}
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 case "$(uname -m)" in x86_64 | amd64) arch=amd64 ;; arm64 | aarch64) arch=arm64 ;; *)
   echo "axs brain: unsupported CPU $(uname -m)" >&2
@@ -35,9 +35,9 @@ case "$os" in linux | darwin) ;; *)
 esac
 # The release this script belongs to (publish.sh sets the tag) and its signing key (allowed_signers): the helper is
 # only run when SHA256SUMS carries a valid signature of that key and lists the downloaded file with its hash.
-version=v0.19.0
+version=v0.20.0
 signer='mastermem-release ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN2CxwEGYaZbQAYM/mlghTalJzTqbTu+5YAUKzqtz5mD'
-repo=${MASTERMEM_RELEASE_BASE:-https://raw.githubusercontent.com/axs-sh/claude/$version}
+repo=${BRAIN_RELEASE_BASE:-https://raw.githubusercontent.com/axs-sh/claude/$version}
 tmp=$(mktemp -d)
 command -v ssh-keygen >/dev/null || { echo "axs brain: ssh-keygen (OpenSSH) is needed to check the download" >&2; exit 1; }
 curl -fsSLo "$tmp/SHA256SUMS" "$repo/SHA256SUMS"
