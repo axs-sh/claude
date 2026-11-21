@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "mem": {
+      "type": "http",
+      "url": "${user_config.server}/mcp",
+      "headersHelper": "\"${CLAUDE_PLUGIN_ROOT}/hooks/bin/axs-brain\" mcp-headers --client claude"
+    }
+  }
+}

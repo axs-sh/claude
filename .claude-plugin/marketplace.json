@@ -1,15 +1,20 @@
 {
   "name": "axs",
-  "description": "axs: agent tools for Claude Code (axs mem: team memory)",
+  "description": "axs: agent tools for Claude Code (axs brain: team memory)",
   "owner": {
     "name": "Srino Systems eU",
     "email": "info@srino.net"
   },
   "plugins": [
     {
+      "name": "brain",
+      "source": "./plugins/brain",
+      "description": "Pushes the right memory before the agent makes the mistake and saves lessons when you correct it"
+    },
+    {
       "name": "mem",
       "source": "./plugins/mem",
-      "description": "Pushes the right memory before the agent makes the mistake and saves lessons when you correct it"
+      "description": "The old name of brain (same plugin): install brain@axs instead"
     }
   ]
 }

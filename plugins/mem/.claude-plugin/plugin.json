@@ -1,7 +1,7 @@
 {
   "name": "mem",
-  "version": "0.18.0",
-  "description": "axs mem team memory: the right memory before the mistake, lessons saved when you correct the agent",
+  "version": "0.19.0",
+  "description": "axs brain team memory: the right memory before the mistake, lessons saved when you correct the agent",
   "author": {
     "name": "Srino Systems eU",
     "email": "info@srino.net"
@@ -10,8 +10,8 @@
     "server": {
       "type": "string",
       "title": "Server URL",
-      "description": "Your axs mem server (no trailing slash); keep the default for mem.axs.sh",
-      "default": "https://mem.axs.sh",
+      "description": "Your axs brain server (no trailing slash); keep the default for brain.axs.sh",
+      "default": "https://brain.axs.sh",
       "required": false
     }
   }
