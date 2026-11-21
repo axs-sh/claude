@@ -1,0 +1,32 @@
+{
+  "name": "axs",
+  "version": "0.1.0",
+  "description": "axs for Claude Code: team memory (axs brain) and builds on your own machines (axs build), one login",
+  "author": {
+    "name": "Srino Systems eU",
+    "email": "info@srino.net"
+  },
+  "userConfig": {
+    "server": {
+      "type": "string",
+      "title": "brain server URL",
+      "description": "Your axs brain server (no trailing slash); keep the default for brain.axs.sh",
+      "default": "https://brain.axs.sh",
+      "required": false
+    },
+    "mem": {
+      "type": "boolean",
+      "title": "axs brain hooks",
+      "description": "Memory pushes, team rules and lessons (off: axs install claude --no-mem does the same)",
+      "default": true,
+      "required": false
+    },
+    "build": {
+      "type": "boolean",
+      "title": "axs build route",
+      "description": "Send heavy builds and tests through axs build (off: axs install claude --no-build does the same)",
+      "default": true,
+      "required": false
+    }
+  }
+}

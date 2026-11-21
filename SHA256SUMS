@@ -1,3 +1,9 @@
+411eb0a4b4bc47c7a7dce0a3ed8f09ddfc10296ff40c6561ca223e6d5afa54eb  plugins/axs/bin/axs
+446de026f6e77bf7a49062e12d88d8ddc98bdb0ba230c6e4f69322af9d9e9da2  plugins/axs/bin/axs.exe
+b27bdea3ae69a849ccad5d27ba12fed34728ccf246c44ae5eb3d31f6b0d0cc77  plugins/axs/bin/darwin-amd64/axs
+3b6ab21b82a8d646da0f884aaee8c46aa034d674ec4ff7378b4864dc9ece94c8  plugins/axs/bin/darwin-arm64/axs
+6f47eb871bd3a98bdecf2e22ae35c389fb960017a68b39d1d69cc92774569730  plugins/axs/bin/linux-amd64/axs
+276220779992c7ceabe57e778723fb6f3f84fdd6345d97694a3cac1052034af6  plugins/axs/bin/linux-arm64/axs
 9a289254435b68a281e27953891dcea8d85e549570aadcb70c738c7af7cb6aff  plugins/brain/hooks/bin/axs-brain
 90b3945067db16af725d9bbe6f3bc3c571eaf576009a641345168fe10aad4327  plugins/brain/hooks/bin/axs-brain.exe
 817b452c65e7e691085da0740cc578236eaf7ef63d7e749d97fb497afedc0d64  plugins/brain/hooks/bin/darwin-amd64/axs-brain
@@ -10,4 +16,4 @@
 48ffcb50350edad40d0885de2aa3bd8205dc08067888e68146c0c9c7f58db628  plugins/mem/hooks/bin/darwin-arm64/axs-brain
 030c5e6a9806fe2cf514becfbdd879b35e3e1724c069f458d03b92ff7552f793  plugins/mem/hooks/bin/linux-amd64/axs-brain
 65fdc0345075a994fcdf1ab538b79f881f11cbfa23636186fea0fbfb00d71495  plugins/mem/hooks/bin/linux-arm64/axs-brain
-1d3c118b9cb02d30963fac945af5935ac2c5629867738006f1d3acaceb29fd7c  install.sh
+dd9055b408c6f255eaa2d6788a168d2f268fca4edfa3e0b8cc01ea59bcf03a1a  install.sh

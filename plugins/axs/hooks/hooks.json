@@ -1,0 +1,118 @@
+{
+  "description": "axs: the axs brain hooks (memory push on session start, prompt, tool batch and shell command, team rules on every tool call, lesson nudge and turn end rules on Stop and SubagentStop) and the axs build route hook (heavy builds and tests go through axs build). Exec form (no shell) of the bundled axs binary: it reads server and token from its environment and config files (never from args) and fails open (exit 0, no output) on any error. Switches: the plugin options mem and build, axs install claude --no-brain / --no-build.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "session-start",
+              "3"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "user-prompt-submit",
+              "2"
+            ],
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PostToolBatch": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "post-tool-batch",
+              "2"
+            ],
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "pre-tool-use",
+              "1"
+            ],
+            "timeout": 2
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "build",
+              "route-hook",
+              "--client",
+              "claude"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "stop",
+              "1"
+            ],
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/bin/axs",
+            "args": [
+              "brain",
+              "subagent-stop",
+              "1"
+            ],
+            "timeout": 2
+          }
+        ]
+      }
+    ]
+  }
+}

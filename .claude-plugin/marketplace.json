@@ -7,6 +7,11 @@
   },
   "plugins": [
     {
+      "name": "axs",
+      "source": "./plugins/axs",
+      "description": "axs brain team memory and axs build in one plugin, one login"
+    },
+    {
       "name": "brain",
       "source": "./plugins/brain",
       "description": "Pushes the right memory before the agent makes the mistake and saves lessons when you correct it"
