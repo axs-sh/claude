@@ -2,7 +2,7 @@
 description: "Save this session in axs brain so a fresh session can continue: decisions, state, open items, lessons"
 argument-hint: "[what to focus on]"
 disable-model-invocation: true
-allowed-tools: ["Read", "Grep", "Glob", "Bash(git status:*)", "Bash(git log:*)", "Bash(git diff:*)", "Bash(git branch:*)", "mcp__plugin_brain_brain__memory_search", "mcp__plugin_brain_brain__memory_get", "mcp__plugin_brain_brain__memory_list", "mcp__plugin_brain_brain__memory_scopes", "mcp__plugin_brain_brain__memory_write", "mcp__plugin_brain_brain__memory_update", "mcp__plugin_brain_brain__changelog_list", "mcp__plugin_brain_brain__changelog_log"]
+allowed-tools: ["Read", "Grep", "Glob", "Bash(git status:*)", "Bash(git log:*)", "Bash(git diff:*)", "Bash(git branch:*)", "mcp__plugin_mem_brain__memory_search", "mcp__plugin_mem_brain__memory_get", "mcp__plugin_mem_brain__memory_list", "mcp__plugin_mem_brain__memory_scopes", "mcp__plugin_mem_brain__memory_write", "mcp__plugin_mem_brain__memory_update", "mcp__plugin_mem_brain__changelog_list", "mcp__plugin_mem_brain__changelog_log"]
 ---
 
 Save what this session knows into axs brain so a new session can continue from the memories alone, without this chat. Arguments: `$ARGUMENTS` (optional: the task or part to focus on; empty: the whole session).
