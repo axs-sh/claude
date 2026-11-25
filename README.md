@@ -45,7 +45,7 @@ Build the helper (maintainers): `./build.sh` (needs Go), then commit `plugins/br
 plus build's route hook (`axs build route-hook`: heavy builds and tests go through axs build). Both are switchable:
 plugin options `mem` and `build`, or `axs install claude --no-brain|--no-build` (kept in the axs config), or
 `AXS_NO_MEM=1` / `AXS_NO_BUILD=1` / `MB_LOCAL=1` in the environment. Its slash commands are `/axs:logout`,
-`/axs:switch`, `/axs:yolo` (the server takes `brain:yolo` and `axs:yolo`), `/axs:review`.
+`/axs:switch`, `/axs:yolo` (the server takes `brain:yolo` and `axs:yolo`), `/axs:review`, `/axs:handoff` (saves the session into axs brain so a fresh session can continue; user only).
 
 Install with the CLI (after `axs login`; the plugin gets its own token minted from that login, so no browser login;
 it stops before changing anything while the marketplace does not list the axs plugin):

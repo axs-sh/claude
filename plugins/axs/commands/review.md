@@ -1,7 +1,7 @@
 ---
 description: "Go through axs brain memories that might be outdated or are written unclearly: check them with you, change nothing without your yes"
 argument-hint: "[scope]"
-allowed-tools: ["Read", "Grep", "Glob", "Bash(git log:*)", "Bash(git branch:*)", "Bash(git tag:*)", "mcp__plugin_axs_mem__review_list", "mcp__plugin_axs_mem__review_resolve", "mcp__plugin_axs_mem__expire_due", "mcp__plugin_axs_mem__expire_extend", "mcp__plugin_axs_mem__expire_review", "mcp__plugin_axs_mem__entity_get", "mcp__plugin_axs_mem__entity_update", "mcp__plugin_axs_mem__memory_get", "mcp__plugin_axs_mem__memory_update", "mcp__plugin_axs_mem__memory_write", "mcp__plugin_axs_mem__memory_retire", "mcp__plugin_axs_mem__audit_report"]
+allowed-tools: ["Read", "Grep", "Glob", "Bash(git log:*)", "Bash(git branch:*)", "Bash(git tag:*)", "mcp__plugin_axs_brain__review_list", "mcp__plugin_axs_brain__review_resolve", "mcp__plugin_axs_brain__expire_due", "mcp__plugin_axs_brain__expire_extend", "mcp__plugin_axs_brain__expire_review", "mcp__plugin_axs_brain__entity_get", "mcp__plugin_axs_brain__entity_update", "mcp__plugin_axs_brain__memory_get", "mcp__plugin_axs_brain__memory_update", "mcp__plugin_axs_brain__memory_write", "mcp__plugin_axs_brain__memory_retire", "mcp__plugin_axs_brain__audit_report"]
 ---
 
 Check the user's axs brain memories that might be outdated, together with the user, in this session. Arguments: `$ARGUMENTS` (a scope like `project:billing-api`: only that group). The user sees every change before it happens; nothing is written without their yes.
