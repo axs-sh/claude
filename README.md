@@ -1,83 +1,61 @@
-# axs brain for Claude Code
+# axs for Claude Code
 
-Team memory for Claude Code: the right memory before the agent makes the mistake, lessons saved when you
-correct it. This repository is a Claude Code plugin marketplace with one plugin, `mem`.
+[axs brain](https://axs.sh/docs/brain) is shared team memory and rules for Claude Code: the right memory before the
+agent makes the mistake, lessons saved when you correct it, and team rules that block or ask before a command.
+
+This repository is the Claude Code plugin marketplace of [axs](https://axs.sh). It has two plugins:
+
+- `axs@axs`: axs brain with the axs CLI's login. `axs install claude` installs it
+  ([Connect your agents](https://axs.sh/docs/getting-started/agents)).
+- `brain@axs`: axs brain only, without the axs CLI.
+
+(`mem@axs` is the old name of `brain@axs`; install `brain@axs` instead.)
 
 ## Install
 
-In a terminal:
+With the axs CLI ([install it](https://axs.sh/docs/getting-started)):
+
+```
+axs login
+axs install claude
+```
+
+Without the CLI:
 
 ```
 claude plugin marketplace add axs-sh/claude; claude plugin install brain@axs
 ```
 
 Then start Claude Code: it opens axs brain in the browser (or shows the link). Approve it and pick the team; the
-MCP tools work in that same session (the helper makes the device token before the login and the MCP connection
-sends it from the start, the server creates it on approve). The token goes into
-`~/.config/axs-brain/claude.json` (0600; installs from before 0.18.0 keep `~/.config/mastermem/`).
+MCP tools work in that same session.
 
-Another team or a revoked token: delete that file and start a new session.
+Update: `claude plugin marketplace update axs && claude plugin update brain@axs` (or `axs@axs`).
 
 ## What it does
 
-- Hooks on session start, prompt, tool batch, shell commands (Bash, PowerShell) and Stop send the hook
-  event to `<server>/v1/hook/<event>`; the answer adds the matching memories to the agent's context and
-  asks for a lesson after a correction.
-- The MCP server (`<server>/mcp`, named `mem` in Claude Code) gives the agent the memory
-  tools.
+- Hooks on session start, prompt, tool batch, shell commands and Stop send the event to axs brain; the answer adds
+  your rules and the matching memories to the agent's context, checks team rules, and asks for a lesson after a
+  correction.
+- The MCP server (`https://brain.axs.sh/mcp`) gives the agent the memory tools: `memory_context`,
+  `memory_search`, `memory_get`, `memory_write`, `memory_update` and more.
 
-When the server is down or slow, Claude Code keeps working without memories: every hook gives up after
-1 to 3 seconds and never blocks.
+When the server is down or slow, Claude Code keeps working without memories: every hook gives up after 1 to 3
+seconds and never blocks.
 
-## Requirements
+The plugin ships a small signed helper (macOS and Linux on Intel and Arm, Windows 10 and 11) that sends the hook
+events. The device token is kept in the platform's secure credential store, never in settings files or
+`hooks.json`.
 
-Nothing to install: the plugin ships a small helper (`hooks/bin/`, macOS and Linux on Intel and Arm,
-Windows 10 and 11) that sends the hook events. The token is kept in the platform's secure credential store
-(on Linux `~/.claude/.credentials.json`, mode 0600), never in settings files or `hooks.json`, and the helper
-gets it through its environment, so other users on a shared machine cannot see it in the process list.
+## Plans
 
-Build the helper (maintainers): `./build.sh` (needs Go), then commit `plugins/brain/hooks/bin/`. Tests:
+axs is a hosted service: Personal €12 a month, Team €20 per person a month, 14 days free.
+See [Plans and billing](https://axs.sh/docs/account/billing).
+
+Docs: [axs.sh/docs](https://axs.sh/docs) · Other agents (Codex, Cursor, any MCP client):
+[Connect your agents](https://axs.sh/docs/getting-started/agents)
+
+## Maintainers
+
+Build the helper: `./build.sh` (needs Go), then commit `plugins/brain/hooks/bin/`. Tests:
 `cd ../server && go test ./braincli` (add `BRAIN_PLUGIN_E2E=1` for the end to end run with `claude`).
-
-## The axs plugin
-
-`plugins/axs` is the successor of `mem`: the same hooks and MCP server through the one `axs` binary (`axs brain ...`).
-Switchable: plugin option `mem`, or `axs install claude --no-brain` (kept in the axs config), or `AXS_NO_MEM=1` in the
-environment. Its slash commands are `/axs:logout`,
-`/axs:switch`, `/axs:yolo` (the server takes `brain:yolo` and `axs:yolo`), `/axs:review`, `/axs:handoff` (saves the session into axs brain so a fresh session can continue; user only).
-
-Install with the CLI (after `axs login`; the plugin gets its own token minted from that login, so no browser login;
-it stops before changing anything while the marketplace does not list the axs plugin):
-
-```
-axs install claude            # claude plugin marketplace add axs-sh/claude; plugin install axs@axs; uninstall brain@axs
-```
-
-Migration from `brain@axs`: nothing breaks if you wait. An installed `brain@axs` keeps running its own `axs-brain` copy, and
-the axs binary started as `axs-brain` behaves exactly like it. `axs install claude` replaces it with `axs@axs`; the
-token file (`~/.config/axs-brain/claude.json`) stays, so the device stays logged in. Never keep both enabled: every
-hook would run twice.
-
-Publish (maintainers, after the owner's go): add `{"name": "axs", "source": "./plugins/axs", ...}` to
-`.claude-plugin/marketplace.json`, bump the versions, then `./publish.sh` (`PUBLISH_DRY_RUN=1` first). With that entry
-publish.sh runs `build.sh axs`, commits `plugins/axs/bin/<os>-<arch>/axs` and `bin/axs.exe` in the published repo
-(here they are ignored) and lists them in the signed SHA256SUMS. Without the entry it leaves `plugins/axs` out.
-
-## Upgrade from mastermem
-
-The plugin was called `mastermem@mastermem` before 0.18.0 (`srmem@srmem` before 0.4.0). Remove it, then install as above:
-
-```
-claude plugin uninstall mastermem@mastermem
-claude plugin marketplace remove mastermem
-```
-
-## Uninstall
-
-```
-claude plugin uninstall brain@axs
-claude plugin marketplace remove axs
-```
-
-Had the older srmem command line client installed (`srmem install --remote`)? Run `srmem uninstall` first, or every hook
-fires twice.
+Release: `publish.sh` (signs SHA256SUMS, pushes and tags this repository).
