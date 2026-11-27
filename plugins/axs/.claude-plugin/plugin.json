@@ -1,7 +1,7 @@
 {
   "name": "axs",
-  "version": "0.1.3",
-  "description": "axs for Claude Code: team memory (axs brain) and builds on your own machines (axs build), one login",
+  "version": "0.1.4",
+  "description": "axs for Claude Code: team memory (axs brain), one login",
   "author": {
     "name": "Srino Systems eU",
     "email": "info@srino.net"
@@ -18,13 +18,6 @@
       "type": "boolean",
       "title": "axs brain hooks",
       "description": "Memory pushes, team rules and lessons (off: axs install claude --no-mem does the same)",
-      "default": true,
-      "required": false
-    },
-    "build": {
-      "type": "boolean",
-      "title": "axs build route",
-      "description": "Send heavy builds and tests through axs build (off: axs install claude --no-build does the same)",
       "default": true,
       "required": false
     }

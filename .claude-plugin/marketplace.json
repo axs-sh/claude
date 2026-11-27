@@ -9,7 +9,7 @@
     {
       "name": "axs",
       "source": "./plugins/axs",
-      "description": "axs brain team memory and axs build in one plugin, one login"
+      "description": "axs brain team memory, one login"
     },
     {
       "name": "brain",
